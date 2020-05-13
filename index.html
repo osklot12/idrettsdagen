@@ -64,7 +64,7 @@
         // Lager en funksjon som skriver i consolen når knappen trykkes på
         async function signIn() {
             // Fant kode som gir deg et pop-up vindu til google innlogging
-            firebase.auth().signInWithPopup(provider).then(function (result) {
+            firebase.auth().signInWithPopup(provider).then(async function (result) {
                 // Dette gir deg en Google token
                 var token = result.credential.accessToken;
                 // Brukeren sin info

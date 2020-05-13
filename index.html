@@ -74,7 +74,6 @@
                 changeUserData(user);
                 makeCookies(user);
                 checkCookies(user);
-                document.getElementById("googleinfo").style.display = "none";
 
                 Cookies.set("signedIn", "true", { expires: 7 });
                 Cookies.set("uid", user.uid, { expires: 7 });

@@ -62,7 +62,7 @@
         };
 
         // Lager en funksjon som skriver i consolen når knappen trykkes på
-        function signIn() {
+        async function signIn() {
             // Fant kode som gir deg et pop-up vindu til google innlogging
             firebase.auth().signInWithPopup(provider).then(function (result) {
                 // Dette gir deg en Google token
@@ -79,12 +79,13 @@
                 Cookies.set("signedIn", "true", { expires: 7 });
                 Cookies.set("uid", user.uid, { expires: 7 });
 
-                firebase.firestore().collection('brukere').doc(user.uid).set({
+                await firebase.firestore().collection('brukere').doc(user.uid).set({
                     navn: user.displayName,
                     email: user.email,
                     photo: user.photoURL,
                 });
 
+                window.location.replace("main.html");
 
                 // ...
             }).catch(function (error) {

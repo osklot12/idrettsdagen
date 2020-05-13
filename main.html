@@ -57,6 +57,9 @@
                 <a href="#" class="page-button">
                     <i class="fas fa-info-circle"></i>
                 </a>
+                <a href="#" class="page-button" onclick="signOut();">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
             </div>
         </nav>
     </header>
@@ -169,6 +172,12 @@
             document.getElementById("teamcreated").style.display = "block";
             setTimeout(() => { document.getElementById("teamcreated").style.display = "none"; }, 4000);
 
+        }
+
+        function signOut() {
+            Cookies.remove("uid");
+            Cookies.remove("signedIn");
+            window.location.replace("index.html");
         }
 
         getSports();

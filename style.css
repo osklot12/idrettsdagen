@@ -70,7 +70,7 @@ nav > h1 {
     100% { transform: rotate(0.1turn); color: #659dbd85; };
 }
 
-@media (max-width: 710px) {
+@media (max-width: 925px) {
     nav {
         flex-direction: column;
     }

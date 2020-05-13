@@ -70,15 +70,11 @@
                 // Brukeren sin info
                 var user = result.user;
                 console.log(result);
-                writeUserData(user);
-                changeUserData(user);
-                makeCookies(user);
-                checkCookies(user);
 
                 Cookies.set("signedIn", "true", { expires: 7 });
                 Cookies.set("uid", user.uid, { expires: 7 });
 
-                firebase.firestore().collection('brukere').doc(user.uid).set({
+                db.collection('brukere').doc(user.uid).set({
                     navn: user.displayName,
                     email: user.email,
                     photo: user.photoURL

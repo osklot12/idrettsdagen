@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Idrettsdagen</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <script src="https://use.fontawesome.com/70ccd8c446.js"></script>
+    <script src="https://kit.fontawesome.com/04dbcf7e87.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-database.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCtEQ0WQMgr4AHTjc0AsV8SqHQMcuh63BM",
+            authDomain: "informasjonsteknologi-1-15c1e.firebaseapp.com",
+            databaseURL: "https://informasjonsteknologi-1-15c1e.firebaseio.com",
+            projectId: "informasjonsteknologi-1-15c1e",
+            storageBucket: "informasjonsteknologi-1-15c1e.appspot.com",
+            messagingSenderId: "183718111388",
+            appId: "1:183718111388:web:22ed9bacef400d44aaa559",
+            measurementId: "G-XSDFS2SFVJ"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <h1>
+                Idrettsdagen
+            </h1>
+            <div class="dummy"></div>
+            <div class="links">
+                <a href="#" class="page-button">
+                    <i class="fas fa-home"></i>
+                </a>
+                <a href="#" class="page-button">
+                    <i class="fas fa-user-shield"></i>
+                </a>
+                <a href="#" class="page-button">
+                    <i class="fas fa-info-circle"></i>
+                </a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="welcome-box">
+            <div class="welcome-text">
+                <h1>
+                    Velkommen til Idrettsdagen
+                </h1>
+                <p>
+                    Her kan du melde deg på Idrettsdagen sammen med dine venner
+                </p>
+                <a href="#teams">
+                    <i class="fas fa-chevron-down"></i>
+                </a>
+            </div>
+        </div>
+        <div class="fillouts">
+            <div class="fillout" id="teams">
+                <h1>
+                    Registrer ditt lag
+                </h1>
+                <div class="teaminfo">
+                    <h3>
+                        Lagnavn
+                    </h3>
+                    <input type="text" id="teamname" maxlength="20">
+                </div>
+                <div class="teaminfo">
+                    <h3>
+                        Idrett
+                    </h3>
+                    <select id="sport">
+
+                    </select>
+                </div>
+                <div class="teaminfo">
+                    <h3>
+                        Skole
+                    </h3>
+                    <select id="school">
+
+                    </select>
+                </div>
+                <i class="far fa-paper-plane" id="sendInButton" onclick="writeTeam();"></i>
+            </div>
+            <div class="fillout" id="students">
+
+            </div>
+        </div>
+        <div id="teamcreated">
+            <p>
+                Laget ditt ble registrert!
+            </p>
+        </div>
+    </main>
+    <script>
+
+        let db = firebase.firestore();
+
+        async function getSports() {
+            let sportDocuments = await db.collection("idretter").get();
+
+            let selSport = document.querySelector("#sport")
+
+            for (let doc of sportDocuments.docs) {
+                console.log(doc.id);
+                let data = doc.data();
+
+                selSport.innerHTML += `
+                    <option value="${doc.id}">${data.navn}</option>`;
+            }
+        }
+
+        async function getSchools() {
+            let schoolDocuments = await db.collection("skoler").get();
+
+            let selSchool = document.querySelector("#school")
+
+            for (let doc of schoolDocuments.docs) {
+                console.log(doc.id);
+                let data = doc.data();
+
+                selSchool.innerHTML += `
+                    <option value="${doc.id}">${data.navn}</option>`;
+            }
+        }
+
+        async function writeTeam() {
+
+            let teamName = document.getElementById("teamname").value;
+
+            let teamSport = document.getElementById("sport");
+
+            let sportText = teamSport.options[teamSport.selectedIndex].text;
+
+            let teamSchool = document.getElementById("school");
+
+            let schoolText = teamSchool.options[teamSchool.selectedIndex].text;
+
+            console.log("Writing team");
+
+            await db.collection('lag').doc().set({
+                lagnavn: teamName,
+                timestamp: firebase.firestore.Timestamp.fromDate(new Date()),
+                idrett: sportText,
+                skole: schoolText
+            });
+
+            document.getElementById("teamcreated").style.display = "block";
+            setTimeout(() => { document.getElementById("teamcreated").style.display = "none"; }, 4000);
+
+        }
+
+        getSports();
+
+        getSchools();
+
+    </script>
+</body>
+
+</html>

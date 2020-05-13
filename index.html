@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Idrettsdagen</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <script src="https://use.fontawesome.com/70ccd8c446.js"></script>
+    <script src="https://kit.fontawesome.com/04dbcf7e87.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-database.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCtEQ0WQMgr4AHTjc0AsV8SqHQMcuh63BM",
+            authDomain: "informasjonsteknologi-1-15c1e.firebaseapp.com",
+            databaseURL: "https://informasjonsteknologi-1-15c1e.firebaseio.com",
+            projectId: "informasjonsteknologi-1-15c1e",
+            storageBucket: "informasjonsteknologi-1-15c1e.appspot.com",
+            messagingSenderId: "183718111388",
+            appId: "1:183718111388:web:22ed9bacef400d44aaa559",
+            measurementId: "G-XSDFS2SFVJ"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+</head>
+
+<body id="logInBody">
+    <main id="logInMain">
+        <div class="logInWrap">
+            <div class="logInBtn" onclick="signIn();">
+                <i class="fab fa-google"></i>
+                <p>
+                    Logg på med Google
+                </p>
+            </div>
+        </div>
+    </main>
+    <script>
+
+        var provider = new firebase.auth.GoogleAuthProvider();
+        var db = firebase.firestore();
+        var user;
+
+        if (Cookies.get("signedIn")) {
+            window.location.replace("main.html");
+        };
+
+        // Lager en funksjon som skriver i consolen når knappen trykkes på
+        function signIn() {
+            // Fant kode som gir deg et pop-up vindu til google innlogging
+            firebase.auth().signInWithPopup(provider).then(function (result) {
+                // Dette gir deg en Google token
+                var token = result.credential.accessToken;
+                // Brukeren sin info
+                var user = result.user;
+                console.log(result);
+                writeUserData(user);
+                changeUserData(user);
+                makeCookies(user);
+                checkCookies(user);
+                document.getElementById("googleinfo").style.display = "none";
+
+                Cookies.set("signedIn", "true", { expires: 7 });
+                Cookies.set("uid", user.uid, { expires: 7 });
+
+                firebase.firestore().collection('brukere').doc(user.uid).set({
+                    navn: user.displayName,
+                    email: user.email,
+                    photo: user.photoURL,
+                });
+
+
+                // ...
+            }).catch(function (error) {
+                // Foretar feilmeldinger her
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // Emailen som brukeren brukte
+                var email = error.email;
+                var credential = error.credential;
+            });
+        };
+
+    </script>
+</body>
+
+</html>

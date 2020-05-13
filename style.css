@@ -1,0 +1,414 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    background: url(resources/websitebackground.jpg);
+    background-repeat: no-repeat;
+    background-size: 120%;
+    background-attachment: fixed;
+}
+
+#logInBody {
+    background: url(resources/websitebackground_dimmed.jpg);
+    height: 100vh;
+}
+
+#logInMain {
+    height: 100vh;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    padding: 15px;
+    margin: 0;
+}
+
+.links {
+    display: flex;
+    flex-direction: row;
+    flex-basis: 360px;
+}
+
+nav > .links > a {
+    font-size: 30px;
+    padding: 0;
+    height: 45px;
+    margin-left: 60px;
+    margin-right: 60px;
+    color: #f0ebf4;
+    flex-shrink: 1;
+}
+
+nav > h1 {
+    font-size: 30px;
+    margin: 0;
+    flex-basis: 120px;
+    color: #f0ebf4;
+}
+
+.dummy{
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-width: 60px;
+}
+
+.page-button {
+    transition: 0.2s;
+}
+
+.page-button:hover {
+    animation-name: turnbutton;
+    animation-duration: 0.5s;
+}
+
+@keyframes turnbutton {
+    50% { transform: rotate(-0.1turn) };
+    100% { transform: rotate(0.1turn); color: #659dbd85; };
+}
+
+@media (max-width: 710px) {
+    nav {
+        flex-direction: column;
+    }
+
+    nav > h1 {
+        margin: 0 auto;
+        flex-basis: 50px;
+    }
+
+    nav .links > a {
+        margin-left: 30px;
+        margin-right: 30px;
+        justify-content: center;
+    }
+
+    .links {
+        justify-content: center;
+        flex-basis: 50px;
+    }
+
+    .dummy {
+        display: none;
+    }
+}
+
+@media (max-width: 1120px) {
+    
+    body {
+        font-family: 'Montserrat', sans-serif;
+        margin: 0;
+        background: url(resources/websitebackground.jpg);
+        background-repeat: no-repeat;
+        background-size: 280%;
+        background-attachment: fixed;
+    }
+
+}
+
+.welcome-text {
+    text-align: center;
+    margin: auto;
+    max-width: 1000px;
+    padding-top: 40px;
+    padding-bottom: 60px;
+    padding-right: 80px;
+    padding-left: 80px;
+    color: #f0ebf4;
+}
+
+.welcome-text > h1 {
+    font-weight: bold;
+    font-size: 5vw;
+    text-transform: uppercase;
+    margin-top: 100px;
+}
+
+.welcome-text > p {
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+
+.welcome-text > i {
+    max-width: 500px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.welcome-box {
+    background-image: url(resources/beach.jpg);
+    background-attachment: fixed;
+}
+
+.fillouts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 60px;
+}
+
+.fillout {
+    background-color: #1f2833;
+    border-radius: 10px;
+    width: 500px;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #f0ebf4;
+    box-shadow: 8px 8px 10px 6px #1f28337a;
+}
+
+.teaminfo {
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+
+.teaminfo > h3 {
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.teaminfo > input {
+    margin-right: 5px;
+    margin-left: 5px;
+    padding: 5px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    transition: 0.5s;
+    background-color: #e64398;
+    width: 250px;
+    color: #f0ebf4;
+    font-family: 'Baloo 2', cursive;
+    font-size: 20px;
+}
+
+.teaminfo > input:hover {
+    background-color: #e06aa7;
+    cursor: default;
+}
+
+.teaminfo > input:focus {
+    border: 3px solid #f0ebf4;
+}
+
+@media (max-width: 1150px) {
+    .fillouts {
+        grid-template-rows: repeat(1, 1fr);
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media (max-width: 800px) {
+    .welcome-text > h1 {
+        font-size: 50px;
+    }
+}
+
+@media (max-width: 600px) {
+    .welcome-text > h1 {
+        font-size: 35px;
+    }
+}
+
+#sport {
+    margin-right: 5px;
+    margin-left: 5px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    transition: 0.5s;
+    background-color: #e64398;
+    width: 250px;
+    text-align: center;
+    color: #f0ebf4;
+    font-family: 'Baloo 2', cursive;
+    font-size: 20px;
+}
+
+#sport:hover {
+    background-color: #e06aa7;
+    cursor: default;
+}
+
+#school {
+    margin-right: 5px;
+    margin-left: 5px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    transition: 0.5s;
+    background-color: #e64398;
+    width: 250px;
+    text-align: center;
+    color: #f0ebf4;
+    font-family: 'Baloo 2', cursive;
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+#school:hover {
+    background-color: #e06aa7;
+    cursor: default;
+}
+
+#teams > i {
+    margin-left: 80%;
+    margin-bottom: 30px;
+    font-size: 40px;
+    transition: 0.2s;
+}
+
+#sendInButton:hover {
+    animation-name: turnbutton;
+    animation-duration: 0.5s;
+    cursor: pointer;
+    color: #e64398;
+}
+
+#teamcreated {
+    position: fixed;
+    right: 30px;
+    bottom: 20px;
+    background-color: #a1c3d1;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 5px;
+    color: #f0ebf4;
+    display: none;
+}
+
+@keyframes createdTeam {
+    50% { display: block };
+    100% { display: none };
+}
+
+@keyframes nod {
+
+    0%{
+        transform: translate(0);
+    }
+
+    50%{
+        transform: translate(0, 40px);
+    }
+
+    100%{
+        transform: translate(0);
+    }
+
+}
+
+.welcome-text > a > i {
+    animation: nod 3s ease infinite;
+    -webkit-animation: nod 3s ease infinite;
+    -moz-animation: nod 3s ease infinite;
+    -o-animation: nod 3s ease infinite;
+    font-size: 50px;
+    color: #f0ebf4;
+    text-decoration: none;
+    margin-top: 70px;
+    margin-bottom: 200px;
+}
+
+.logInWrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.logInBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0ebf4;
+    height: 80px;
+    width: 440px;
+    font-size: 30px;
+    border-radius: 15px;
+    transition: 0.2s;
+    color: #1f2833;
+    animation: colorchange2 3s ease infinite;
+}
+
+.logInBtn:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 10px 6px #f0ebf46b;
+    transition: 0.2s;
+}
+
+.logInBtn > i {
+    display: inline;
+    padding: 10px;
+    font-size: 40px;
+    animation: rotate 3s ease infinite;
+}
+
+.logInBtn > p {
+    display: inline;
+    padding: 10px;
+    font-weight: bold;
+    animation: colorchange 3s ease infinite;
+}
+
+@keyframes rotate {
+
+    0%{
+        transform: rotate(0);
+        color: #a1c3d1;
+    }
+
+    50%{
+        transform: rotate(0.5turn);
+        color: #e64398
+    }
+
+    100%{
+        transform: rotate(1turn);
+        color: #a1c3d1;
+    }
+
+}
+
+@keyframes colorchange {
+
+    0%{
+        color: #a1c3d1;
+    }
+
+    50%{
+        color: #e64398
+    }
+
+    100%{
+        color: #a1c3d1;
+    }
+
+}
+
+@keyframes colorchange2 {
+
+    0%{
+        background-color: #1f2833;
+    }
+
+    50%{
+        background-color: #f0ebf4;
+    }
+
+    100%{
+        background-color: #1f2833;
+    }
+
+}

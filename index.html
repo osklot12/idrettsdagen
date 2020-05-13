@@ -78,7 +78,7 @@
                 Cookies.set("signedIn", "true", { expires: 7 });
                 Cookies.set("uid", user.uid, { expires: 7 });
 
-                await firebase.firestore().collection('brukere').doc(user.uid).set({
+                firebase.firestore().collection('brukere').doc(user.uid).set({
                     navn: user.displayName,
                     email: user.email,
                     photo: user.photoURL

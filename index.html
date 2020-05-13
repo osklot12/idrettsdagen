@@ -81,7 +81,7 @@
                 await firebase.firestore().collection('brukere').doc(user.uid).set({
                     navn: user.displayName,
                     email: user.email,
-                    photo: user.photoURL,
+                    photo: user.photoURL
                 });
 
                 window.location.replace("main.html");

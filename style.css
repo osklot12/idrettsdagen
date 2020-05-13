@@ -140,7 +140,6 @@ nav > h1 {
 }
 
 .welcome-box {
-    background-image: url(resources/beach.jpg);
     background-attachment: fixed;
 }
 
@@ -160,6 +159,7 @@ nav > h1 {
     text-align: center;
     color: #f0ebf4;
     box-shadow: 8px 8px 10px 6px #1f28337a;
+    margin-bottom: 30px;
 }
 
 .teaminfo {
@@ -234,6 +234,27 @@ nav > h1 {
 }
 
 #sport:hover {
+    background-color: #e06aa7;
+    cursor: default;
+}
+
+#chooseTeam {
+    margin-right: 5px;
+    margin-left: 5px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    transition: 0.5s;
+    background-color: #e64398;
+    width: 250px;
+    text-align: center;
+    color: #f0ebf4;
+    font-family: 'Baloo 2', cursive;
+    font-size: 20px;
+}
+
+#chooseTeam:hover {
     background-color: #e06aa7;
     cursor: default;
 }

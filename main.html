@@ -107,7 +107,17 @@
                 <i class="far fa-paper-plane" id="sendInButton" onclick="writeTeam();"></i>
             </div>
             <div class="fillout" id="students">
+                <h1>
+                    Legg til elever
+                </h1>
+                <div class="teaminfo">
+                    <h3>
+                        Velg lag
+                    </h3>
+                    <select id="chooseTeam">
 
+                    </select>
+                </div>
             </div>
         </div>
         <div id="teamcreated">
@@ -145,6 +155,20 @@
 
                 selSchool.innerHTML += `
                     <option value="${doc.id}">${data.navn}</option>`;
+            }
+        }
+
+        async function getTeams() {
+            let teamDocuments = await db.collection("lag").get();
+
+            let selTeam = document.querySelector("#chooseTeam")
+
+            for (let doc of teamDocuments.docs) {
+                console.log(doc.id);
+                let data = doc.data();
+
+                selTeam.innerHTML += `
+                    <option value="${doc.id}">${data.lagnavn}</option>`;
             }
         }
 
@@ -186,6 +210,8 @@
         getSports();
 
         getSchools();
+
+        getTeams();
 
     </script>
 </body>

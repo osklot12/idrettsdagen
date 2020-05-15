@@ -160,6 +160,7 @@ nav > h1 {
     color: #f0ebf4;
     box-shadow: 8px 8px 10px 6px #1f28337a;
     margin-bottom: 30px;
+    min-height: 500px;
 }
 
 .teaminfo {
@@ -290,7 +291,7 @@ nav > h1 {
 
 .filloutBtn {
     margin-left: 170px;
-    margin-bottom: 30px;
+    margin-top: 30px;
     font-size: 40px;
     transition: 0.2s;
     display: inline-block;
@@ -298,7 +299,7 @@ nav > h1 {
 
 #filloutButton {
     margin-left: 300px;
-    margin-bottom: 30px;
+    margin-top: 30px;
     font-size: 40px;
     transition: 0.2s;
     display: inline-block;
@@ -466,8 +467,12 @@ nav > h1 {
 
 #manageStudents {
     margin-right: 170px;
-    margin-bottom: 30px;
+    margin-top: 30px;
     font-size: 40px;
     transition: 0.2s;
     display: inline-block;
+}
+
+#studentsBox {
+    margin-bottom: 30px;
 }

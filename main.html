@@ -110,7 +110,7 @@
                 <h1>
                     Legg til elever
                 </h1>
-                <div class="teaminfo">
+                <div class="teaminfo" id="studentsBox">
                     <h3>
                         Velg lag
                     </h3>
@@ -171,7 +171,7 @@
         async function getTeams() {
             let userID = Cookies.get("uid");
 
-            let teamDocuments = await db.collection("lag").where("uid", "==", userID).get();
+            let teamDocuments = await db.collection("lag").where("bruker", "==", userID).get();
 
             let selTeam = document.querySelector("#chooseTeam");
 

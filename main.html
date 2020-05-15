@@ -171,12 +171,12 @@
         async function getTeams() {
             let userID = Cookies.get("uid");
 
-            selTeam.innerHTML += `
-                    `;
-
             let teamDocuments = await db.collection("lag").where("uid", "==", userID).get();
 
-            let selTeam = document.querySelector("#chooseTeam")
+            let selTeam = document.querySelector("#chooseTeam");
+
+            selTeam.innerHTML = `
+            `;
 
             for (let doc of teamDocuments.docs) {
                 console.log(doc.id);

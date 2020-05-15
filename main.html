@@ -218,7 +218,7 @@
 
             document.getElementById("teamcreated").style.display = "block";
             setTimeout(() => { document.getElementById("teamcreated").style.display = "none"; }, 4000);
-            teamName.innerHTML = "";
+            teamName.value = "";
             getTeams();
 
         }
@@ -243,7 +243,8 @@
             document.getElementById("studentcreated").style.display = "block";
             setTimeout(() => { document.getElementById("studentcreated").style.display = "none"; }, 4000);
 
-
+            surName.value = "";
+            familyName.value = "";
 
         }
 

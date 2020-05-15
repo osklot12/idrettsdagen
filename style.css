@@ -288,7 +288,37 @@ nav > h1 {
     transition: 0.2s;
 }
 
-#sendInButton:hover {
+.filloutBtn {
+    margin-left: 170px;
+    margin-bottom: 30px;
+    font-size: 40px;
+    transition: 0.2s;
+    display: inline-block;
+}
+
+#filloutButton {
+    margin-left: 300px;
+    margin-bottom: 30px;
+    font-size: 40px;
+    transition: 0.2s;
+    display: inline-block;
+}
+
+#filloutButton:hover {
+    animation-name: turnbutton;
+    animation-duration: 0.5s;
+    cursor: pointer;
+    color: #e64398;
+}
+
+.filloutBtn:hover {
+    animation-name: turnbutton;
+    animation-duration: 0.5s;
+    cursor: pointer;
+    color: #e64398;
+}
+
+#manageStudents:hover {
     animation-name: turnbutton;
     animation-duration: 0.5s;
     cursor: pointer;
@@ -432,4 +462,12 @@ nav > h1 {
         background-color: #1f2833;
     }
 
+}
+
+#manageStudents {
+    margin-right: 170px;
+    margin-bottom: 30px;
+    font-size: 40px;
+    transition: 0.2s;
+    display: inline-block;
 }

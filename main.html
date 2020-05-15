@@ -104,7 +104,7 @@
 
                     </select>
                 </div>
-                <i class="far fa-paper-plane" id="sendInButton" onclick="writeTeam();"></i>
+                <i class="far fa-paper-plane" id="filloutButton" onclick="writeTeam();"></i>
             </div>
             <div class="fillout" id="students">
                 <h1>
@@ -117,7 +117,17 @@
                     <select id="chooseTeam">
 
                     </select>
+                    <h3>
+                        Fornavn
+                    </h3>
+                    <input type="text" id="surName" maxlength="20">
+                    <h3>
+                        Etternavn
+                    </h3>
+                    <input type="text" id="familyName" maxlength="20">
                 </div>
+                    <i class="fas fa-tasks" id="manageStudents"></i>
+                    <i class="far fa-paper-plane filloutBtn" onclick="writeTeam();"></i>
             </div>
         </div>
         <div id="teamcreated">
@@ -159,7 +169,12 @@
         }
 
         async function getTeams() {
-            let teamDocuments = await db.collection("lag").get();
+            let userID = Cookies.get("uid");
+
+            selTeam.innerHTML += `
+                    `;
+
+            let teamDocuments = await db.collection("lag").where("uid", "==", userID).get();
 
             let selTeam = document.querySelector("#chooseTeam")
 

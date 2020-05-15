@@ -476,3 +476,17 @@ nav > h1 {
 #studentsBox {
     margin-bottom: 30px;
 }
+
+#studentcreated {
+    position: fixed;
+    right: 30px;
+    bottom: 20px;
+    background-color: #a1c3d1;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 5px;
+    color: #f0ebf4;
+    display: none;
+}

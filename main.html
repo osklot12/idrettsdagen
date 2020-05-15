@@ -127,12 +127,17 @@
                     <input type="text" id="familyName" maxlength="20">
                 </div>
                     <i class="fas fa-tasks" id="manageStudents"></i>
-                    <i class="far fa-paper-plane filloutBtn" onclick="writeTeam();"></i>
+                    <i class="far fa-paper-plane filloutBtn" onclick="writeStudent();"></i>
             </div>
         </div>
         <div id="teamcreated">
             <p>
                 Laget ditt ble registrert!
+            </p>
+        </div>
+        <div id="studentcreated">
+            <p>
+                Eleven ble lagt til!
             </p>
         </div>
     </main>
@@ -215,6 +220,30 @@
             setTimeout(() => { document.getElementById("teamcreated").style.display = "none"; }, 4000);
             teamName.innerHTML = "";
             getTeams();
+
+        }
+
+        async function writeStudent() {
+
+            let studentTeamName = document.getElementById("chooseTeam");
+
+            let studentTeamNameText = studentTeamName.options[studentTeamName.selectedIndex].text;
+
+            let surName = document.getElementById("surName").value;
+
+            let familyName = document.getElementById("familyName").value;
+
+            await db.collection('elever').doc().set({
+                lag: studentTeamNameText,
+                fornavn: surName,
+                etternavn: familyName
+            });
+
+            console.log("Student was successfully added")
+            document.getElementById("studentcreated").style.display = "block";
+            setTimeout(() => { document.getElementById("studentcreated").style.display = "none"; }, 4000);
+
+
 
         }
 

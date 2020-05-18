@@ -132,12 +132,13 @@
                 let data = doc.data();
 
                 selTeam.innerHTML += `
-                    <option value="${doc.id}" onclick="getStudents();">${data.lagnavn}</option>`;
+                    <option value="${doc.id}" onchange="getStudents();">${data.lagnavn}</option>`;
             }
         }
 
 
         getTeams();
+        getStudents();
 
     </script>
 </body>

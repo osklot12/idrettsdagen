@@ -516,10 +516,12 @@ nav > h1 {
 .studentContainer:nth-child(even) {
     background: #a1c3d1;
     color: #1f2833;
+    box-shadow: 4px 4px 10px 6px #a1c3d19c;
 }
 
 .studentContainer:nth-child(odd) {
     background: #e64398;
+    box-shadow: 4px 4px 10px 6px #e643979d;
 }
 
 .studentContainer {
@@ -574,6 +576,7 @@ nav > h1 {
     width: 380px;
     padding: 10px;
     border-radius: 10px;
+    box-shadow: 8px 8px 10px 6px #1f28337a;
 }
 
 .studentDropDown > input {
@@ -636,7 +639,7 @@ nav > h1 {
     text-align: center;
     color: #f0ebf4;
     margin: 70px;
-    animation: titleExpand 3s ease;
+    animation: titleExpand 1s ease;
 }
 
 @media (max-width: 500px) {
@@ -663,10 +666,6 @@ nav > h1 {
 
     0%{
         font-size: 1px;
-    }
-
-    50%{
-        font-size: 50px;
     }
 
     100%{

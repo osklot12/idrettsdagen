@@ -163,7 +163,7 @@
 
             let targetTeam = await db.collection("lag").where("lagnavn", "==", selectedTeamText);
 
-            await db.collection("lag").docs().where("lagnavn", "==", selectedTeamText).delete().then(function () {
+            await db.collection("lag").doc().where("lagnavn", "==", selectedTeamText).delete().then(function () {
                 console.log("Team was successfully deleted!");
                 document.getElementById("teamcreated").style.display = "block";
                 setTimeout(() => { document.getElementById("teamcreated").style.display = "none"; }, 4000);

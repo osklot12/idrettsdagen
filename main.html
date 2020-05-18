@@ -126,8 +126,8 @@
                     </h3>
                     <input type="text" id="familyName" maxlength="20">
                 </div>
-                    <i class="fas fa-tasks" id="manageStudents" onclick="manageStudents()"></i>
-                    <i class="far fa-paper-plane filloutBtn" onclick="writeStudent();"></i>
+                <i class="fas fa-tasks" id="manageStudents" onclick="manageStudents()"></i>
+                <i class="far fa-paper-plane filloutBtn" onclick="writeStudent();"></i>
             </div>
         </div>
         <div id="teamcreated">
@@ -140,10 +140,15 @@
                 Eleven ble lagt til!
             </p>
         </div>
+        <div id="teamsDisplay">
+
+        </div>
     </main>
     <script>
 
         let db = firebase.firestore();
+
+        let teamsBox = document.getElementById("teamsDisplay");
 
         async function getSports() {
             let sportDocuments = await db.collection("idretter").get();
@@ -253,6 +258,112 @@
         function manageStudents() {
             window.location.replace("students.html");
         };
+
+        async function getTeamsDisplay() {
+
+            console.log("Retrieving data for teams from the database");
+
+            let teams = await db.collection("lag").orderBy("timestamp", "desc").get();
+
+            documentsToHTML(teams);
+
+        }
+
+
+
+        async function documentsToHTML(teams) {
+            // Sletter HTML som var i main
+            teamsBox.innerHTML = "";
+
+            // Går igjennom alle documentene med en for-løkke
+            for (let doc of teams.docs) {
+                console.log(doc.id, "=>", doc.data());
+
+                // Henter ut dataene fra et document
+                let data = doc.data();
+
+                let teamID = doc.id;
+
+                let sport = data.idrett;
+
+                let teamName = data.lagnavn;
+
+                let school = data.skole;
+
+                let students = await db.collection("elever").where("lag", "==", teamName).get();
+
+                let size = students.size;
+
+                console.log(size);
+
+                // Skriver dataene til HTML
+                teamsBox.innerHTML += `
+                <div class="teamContainer">
+                    <article class="teamArticle">
+                        <div class="teamInformation">
+                            <p class="currentTeamName">
+                                ${teamName}
+                            </p>
+                            <p class="currentTeamSport">
+                                ${sport}
+                            </p>
+                            <p class="currentTeamSchool">
+                                ${school}
+                            </p>
+                            <p class="currentTeamStudents">
+                                Elever: ${size} <i class="fas fa-chevron-down" id="${teamName}showMore" onclick="showMore('${teamName}');"></i>
+                                <i class="fas fa-chevron-up" id="${teamName}showLess" onclick="showLess('${teamName}');"></i>
+                            </p>
+                        </div>
+                        <div id="${teamName}Students" class="studentsOnDisplay displayTheStudents">
+                                
+                        </div>
+                    </article>
+                </div>`;
+            }
+        };
+
+        async function showMore(teamName) {
+            console.log("bruv")
+            document.getElementById(teamName + "showMore").style.display = "none"
+            document.getElementById(teamName + "showLess").style.display = "inline-block"
+            document.getElementById(teamName + "Students").style.display = "grid"
+
+            let students = await db.collection("elever").where("lag", "==", teamName).get();
+
+            let studentDiv = document.getElementById(teamName+"Students");
+
+            studentDiv.innerHTML = "";
+
+            for (let doc of students.docs) {
+                console.log(doc.id, "=>", doc.data());
+
+                // Henter ut dataene fra et document
+                let data = doc.data();
+
+                console.log("halla")
+
+                let name = data.fornavn;
+
+                let surName = data.etternavn;
+
+                // Skriver dataene til HTML
+                studentDiv.innerHTML += `
+                <p>
+                    ${name} ${surName}
+                </p>
+                `;
+            }
+        };
+
+        async function showLess(teamName) {
+            console.log("bruv")
+            document.getElementById(teamName + "showMore").style.display = "inline-block"
+            document.getElementById(teamName + "showLess").style.display = "none"
+            document.getElementById(teamName + "Students").style.display = "none"
+        }
+
+        getTeamsDisplay();
 
         getSports();
 

@@ -684,3 +684,183 @@ nav > h1 {
     }
 
 }
+
+#teamsDisplay {
+    margin: 0 auto;
+    margin-left: 200px;
+    margin-right: 200px;
+    background-color: #1f2833;
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 8px 8px 10px 6px #1f28337a;
+}
+
+.teamContainer {
+    background-color: #1f2833;
+    color: #f0ebf4;
+    padding: 5px;
+    border-radius: 10px;
+    margin: 20px;
+    font-weight: bold;
+    display: flex;
+}
+
+.currentTeamName {
+    font-size: 25px;
+    text-transform: uppercase;
+    margin: 10px;
+}
+
+.currentTeamSport {
+    font-size: 25px;
+    text-transform: uppercase;
+    margin: 10px;
+}
+
+.currentTeamSchool {
+    font-size: 25px;
+    text-transform: uppercase;
+    margin: 10px;
+}
+
+.currentTeamStudents {
+    font-size: 25px;
+    text-transform: uppercase;
+    margin: 10px;
+}
+
+.studentsOnDisplay{
+    font-size: 15px;
+    margin: 10px;
+}
+
+.currentTeamStudents > i:hover {
+    cursor: pointer;
+}
+
+.teamContainer:nth-child(even) {
+    background: #1f2833;
+    color: #1f2833;
+    box-shadow: 6px 6px 6px 6px #1f283385;
+    color: #e64398;
+    border-right: #f0ebf4 solid 2px;
+    border-left: #f0ebf4 solid 2px;
+    border-bottom: #f0ebf4 solid 2px;
+    border-top: #f0ebf4 solid 2px;
+}
+
+.teamContainer:nth-child(even) .currentTeamName {
+    background-color: #f0ebf4;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.teamContainer:nth-child(odd) .currentTeamName {
+    background-color: #1f2833;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.teamContainer:nth-child(even) .currentTeamSport {
+    background-color: #f0ebf4;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.teamContainer:nth-child(odd) .currentTeamSport {
+    background-color: #1f2833;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.teamContainer:nth-child(even) .currentTeamSchool {
+    background-color: #f0ebf4;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.teamContainer:nth-child(odd) .currentTeamSchool {
+    background-color: #1f2833;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.teamContainer:nth-child(even) .currentTeamStudents {
+    background-color: #f0ebf4;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.teamContainer:nth-child(odd) .currentTeamStudents {
+    background-color: #1f2833;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.teamContainer:nth-child(odd) .studentsOnDisplay > p{
+    background-color: #1f2833;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 8px 8px 10px 6px #1f28337a;
+}
+
+.teamContainer:nth-child(even) .studentsOnDisplay > p {
+    background-color: #f0ebf4;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 8px 8px 10px 6px #1f28337a;
+}
+
+.teamContainer:nth-child(even) .studentsOnDisplay {
+    background-color: #e64398;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.teamContainer:nth-child(odd) .studentsOnDisplay{
+    background-color: #a1c3d1;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.teamContainer:nth-child(odd) {
+    background: #f0ebf4;
+    box-shadow: 6px 6px 6px 6px #1f283385;
+    color: #a1c3d1;
+    border-right: #1f2833 solid 2px;
+    border-left: #1f2833 solid 2px;
+    border-bottom: #1f2833 solid 2px;
+    border-top: #1f2833 solid 2px;
+}
+
+
+
+.teamInformation {
+    display: flex;
+    flex-direction: row;
+}
+
+.displayTheStudents {
+    display: none;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.displayTheStudents > p{
+    margin: 10px;
+}
+
+.fa-chevron-up {
+    display: none;
+}

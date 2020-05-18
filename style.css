@@ -631,6 +631,7 @@ nav > h1 {
     text-align: center;
     color: #f0ebf4;
     margin: 70px;
+    animation: titleExpand 3s ease;
 }
 
 @media (max-width: 500px) {
@@ -651,4 +652,20 @@ nav > h1 {
 .fa-times:hover {
     color: #a1c3d1;
     cursor: pointer;
+}
+
+@keyframes titleExpand {
+
+    0%{
+        font-size: 1px;
+    }
+
+    50%{
+        font-size: 50px;
+    }
+
+    100%{
+        font-size: 70px;
+    }
+
 }

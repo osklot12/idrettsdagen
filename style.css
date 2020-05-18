@@ -11,6 +11,10 @@ body {
     background-attachment: fixed;
 }
 
+main {
+    text-align: center;
+}
+
 #logInBody {
     background: url(resources/websitebackground_dimmed.jpg);
     height: 100vh;
@@ -686,13 +690,14 @@ nav > h1 {
 }
 
 #teamsDisplay {
-    margin: 0 auto;
-    margin-left: 200px;
-    margin-right: 200px;
+    margin-left: auto;
+    margin-right: auto;
     background-color: #1f2833;
     padding: 50px;
     border-radius: 20px;
     box-shadow: 8px 8px 10px 6px #1f28337a;
+    display: inline-block;
+    margin-bottom: 50px;
 }
 
 .teamContainer {
@@ -700,9 +705,11 @@ nav > h1 {
     color: #f0ebf4;
     padding: 5px;
     border-radius: 10px;
-    margin: 20px;
+    margin: 0 auto;
     font-weight: bold;
     display: flex;
+    margin-bottom: 15px;
+    margin-top: 15px;
 }
 
 .currentTeamName {
@@ -854,7 +861,8 @@ nav > h1 {
 
 .displayTheStudents {
     display: none;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    vertical-align: middle;
 }
 
 .displayTheStudents > p{
@@ -863,4 +871,8 @@ nav > h1 {
 
 .fa-chevron-up {
     display: none;
+}
+
+.teamArticle {
+    margin: 0 auto;
 }

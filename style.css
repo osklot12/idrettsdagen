@@ -216,6 +216,12 @@ nav > h1 {
     }
 }
 
+@media (max-width: 650px) {
+    .fillout {
+        width: 400px;
+    }
+}
+
 @media (max-width: 600px) {
     .welcome-text > h1 {
         font-size: 35px;

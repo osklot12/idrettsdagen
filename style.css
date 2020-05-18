@@ -596,10 +596,10 @@ nav > h1 {
     align-items: center;
     justify-content: center;
     background-color: #1f2833;
-    width: 380px;
     padding: 10px;
     border-radius: 10px;
     box-shadow: 8px 8px 10px 6px #1f28337a;
+    width: 450px;
 }
 
 .studentDropDown > input {
@@ -638,7 +638,8 @@ nav > h1 {
 
 .studentDropDown > h3 {
     margin-top: 0 auto;
-    padding-right: 10px;
+    padding-right: 20px;
+    padding-left: 10px;
 }
 
 .studentDropDown > input:hover {
@@ -906,4 +907,16 @@ nav > h1 {
 
 .teamArticle {
     margin: 0 auto;
+}
+
+.deleteTeam {
+    font-size: 30px;
+    margin-left: 30px;
+    margin-right: 20px;
+}
+
+.deleteTeam:hover {
+    cursor: pointer;
+    animation-name: turnbutton;
+    animation-duration: 0.5s;
 }

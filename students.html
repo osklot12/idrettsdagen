@@ -127,18 +127,18 @@
             selTeam.innerHTML = `
             `;
 
-            for await (let doc of teamDocuments.docs) {
+            for (let doc of teamDocuments.docs) {
                 console.log(doc.id);
-                let data = doc.data();
+                let data = await doc.data();
 
                 selTeam.innerHTML += `
                     <option value="${doc.id}">${data.lagnavn}</option>`;
             }
+            getStudents();
         }
 
 
         getTeams();
-        getStudents();
 
     </script>
 </body>

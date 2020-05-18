@@ -220,6 +220,10 @@ nav > h1 {
     .fillout {
         width: 400px;
     }
+
+    #teamDisplay {
+        font-size: 40px;
+    }
 }
 
 @media (max-width: 600px) {

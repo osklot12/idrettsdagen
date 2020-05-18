@@ -46,7 +46,7 @@
                 <h3>
                     Velg lag
                 </h3>
-                <select id="chooseTeam">
+                <select id="chooseTeam" onchange="getStudents();">
 
                 </select>
             </div>
@@ -132,7 +132,7 @@
                 let data = doc.data();
 
                 selTeam.innerHTML += `
-                    <option value="${doc.id}" onchange="getStudents();">${data.lagnavn}</option>`;
+                    <option value="${doc.id}">${data.lagnavn}</option>`;
             }
         }
 

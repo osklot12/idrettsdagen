@@ -516,12 +516,12 @@ nav > h1 {
 .studentContainer:nth-child(even) {
     background: #a1c3d1;
     color: #1f2833;
-    box-shadow: 4px 4px 10px 6px #a1c3d19c;
+    box-shadow: 8px 8px 10px 6px #a1c3d175;
 }
 
 .studentContainer:nth-child(odd) {
     background: #e64398;
-    box-shadow: 4px 4px 10px 6px #e643979d;
+    box-shadow: 8px 8px 10px 6px #e643976b;
 }
 
 .studentContainer {

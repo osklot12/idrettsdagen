@@ -42,6 +42,7 @@
 
 <body id="studentBody">
     <header>
+        <i class="fas fa-times" onclick="exit();"></i>
         <h1 id="teamDisplay">
 
         </h1>
@@ -141,6 +142,10 @@
             }
             getStudents();
         }
+
+        function exit() {
+            window.location.replace("main.html");
+        };
 
 
         getTeams();

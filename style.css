@@ -638,3 +638,17 @@ nav > h1 {
         flex-direction: column;
     }
 }
+
+.fa-times {
+    position: absolute;
+    font-size: 35px;
+    right: 40px;
+    top: 30px;
+    color: #f0ebf4;
+    transition: 0.5s;
+}
+
+.fa-times:hover {
+    color: #a1c3d1;
+    cursor: pointer;
+}

@@ -163,7 +163,9 @@
 
             let selectedTeamText = selectedTeam.options[selectedTeam.selectedIndex].text;
 
-            await db.collection("lag").where("lagnavn", "==", selectedTeamText).delete().then(function () {
+            let selectedDeleteTeam = await db.collection("lag").where("lagnavn", "==", selectedTeamText).get();
+
+            await selectedDeleteTeam.delete().then(function () {
                 console.log("Team was successfully deleted!");
                 document.getElementById("teamcreated").style.display = "block";
                 setTimeout(() => { document.getElementById("teamcreated").style.display = "none"; }, 4000);

@@ -459,7 +459,7 @@ nav > h1 {
     }
 
     50%{
-        color: #e64398
+        color: #e64398;
     }
 
     100%{
@@ -480,6 +480,25 @@ nav > h1 {
 
     100%{
         background-color: #1f2833;
+    }
+
+}
+
+@keyframes colorchange3 {
+
+    0%{
+        background-color: #1f2833;
+        color: #a1c3d1;
+    }
+
+    50%{
+        background-color: #f0ebf4;
+        color: #e64398;
+    }
+
+    100%{
+        background-color: #1f2833;
+        color: #a1c3d1;
     }
 
 }
@@ -639,11 +658,24 @@ nav > h1 {
     font-weight: bold;
     font-size: 70px;
     text-transform: uppercase;
+    
     margin-top: 100px;
     text-align: center;
     color: #f0ebf4;
-    margin: 70px;
-    animation: titleExpand 1s ease;
+    margin-bottom: 70px;
+    animation: colorchange3 3s ease infinite;
+    padding: 10px;
+    border-radius: 20px;
+    vertical-align: middle;
+    display: inline-block;
+    box-shadow: 8px 8px 10px 6px #1f28337a;
+}
+
+.showText {
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+    text-align: center;
 }
 
 @media (max-width: 500px) {

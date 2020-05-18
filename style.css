@@ -210,6 +210,10 @@ nav > h1 {
     .welcome-text > h1 {
         font-size: 50px;
     }
+
+    #studentMain {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 600px) {

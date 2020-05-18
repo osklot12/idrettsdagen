@@ -42,14 +42,27 @@
 
 <body id="studentBody">
     <header>
-            <div class="teaminfo studentDropDown" id="studentsBox">
-                <h3>
-                    Velg lag
-                </h3>
-                <select id="chooseTeam" onchange="getStudents();">
+        <h1 id="teamDisplay">
 
-                </select>
-            </div>
+        </h1>
+        <div class="studentDropDown">
+            <h3>
+                Velg lag
+            </h3>
+            <select id="chooseTeam" onchange="getStudents();">
+
+            </select>
+            <div class="dummy"></div>
+            <h3>
+                Fornavn
+            </h3>
+            <input type="text" id="surName" maxlength="20" class="inputField">
+            <div class="dummy"></div>
+            <h3>
+                Etternavn
+            </h3>
+            <input type="text" id="familyName" maxlength="20" class="inputField">
+        </div>
     </header>
     <main id="studentMain">
 
@@ -68,6 +81,8 @@
             let selectedTeamText = selectedTeam.options[selectedTeam.selectedIndex].text;
 
             let teamStudents = await db.collection("elever").where("lag", "==", selectedTeamText).get();
+
+            document.getElementById("teamDisplay").innerHTML = selectedTeamText;
 
             documentsToHTML(teamStudents);
 

@@ -646,7 +646,18 @@ nav > h1 {
     .studentDropDown {
         flex-direction: column;
     }
+
+    .studentDropDown > input {
+        margin-bottom: 20px
+    }
 }
+
+@media (max-width: 700px) {
+    #studentMain {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 
 .fa-times {
     position: absolute;

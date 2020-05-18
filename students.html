@@ -83,8 +83,6 @@
 
             document.getElementById("teamDisplay").innerHTML = selectedTeamText;
 
-            document.getElementById("teamDisplay").style.animation = "animation: titleExpand 1s ease"
-
             documentsToHTML(teamStudents);
 
         }
@@ -163,9 +161,9 @@
 
             let selectedTeamText = selectedTeam.options[selectedTeam.selectedIndex].text;
 
-            let selectedDeleteTeam = await db.collection("lag").where("lagnavn", "==", selectedTeamText).get();
+            let targetTeam = await db.collection("lag").where("lagnavn", "==", selectedTeamText);
 
-            await selectedDeleteTeam.delete().then(function () {
+            await db.collection("lag").docs().where("lagnavn", "==", selectedTeamText).delete().then(function () {
                 console.log("Team was successfully deleted!");
                 document.getElementById("teamcreated").style.display = "block";
                 setTimeout(() => { document.getElementById("teamcreated").style.display = "none"; }, 4000);

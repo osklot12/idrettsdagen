@@ -127,7 +127,7 @@
             selTeam.innerHTML = `
             `;
 
-            for (let doc of teamDocuments.docs) {
+            for await (let doc of teamDocuments.docs) {
                 console.log(doc.id);
                 let data = doc.data();
 

@@ -569,6 +569,11 @@ nav > h1 {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
+    background-color: #1f2833;
+    width: 380px;
+    padding: 10px;
+    border-radius: 10px;
 }
 
 .studentDropDown > input {

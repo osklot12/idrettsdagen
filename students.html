@@ -131,7 +131,7 @@
                 console.log(doc.id);
                 let data = await doc.data();
 
-                selTeam.innerHTML += `
+                selTeam.innerHTML += await `
                     <option value="${doc.id}">${data.lagnavn}</option>`;
             }
             getStudents();

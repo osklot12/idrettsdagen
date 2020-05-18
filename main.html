@@ -126,7 +126,7 @@
                     </h3>
                     <input type="text" id="familyName" maxlength="20">
                 </div>
-                    <i class="fas fa-tasks" id="manageStudents"></i>
+                    <i class="fas fa-tasks" id="manageStudents" onclick="manageStudents()"></i>
                     <i class="far fa-paper-plane filloutBtn" onclick="writeStudent();"></i>
             </div>
         </div>
@@ -249,6 +249,10 @@
             Cookies.remove("signedIn");
             window.location.replace("index.html");
         }
+
+        function manageStudents() {
+            window.location.replace("students.html");
+        };
 
         getSports();
 

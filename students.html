@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Idrettsdagen</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <script src="https://use.fontawesome.com/70ccd8c446.js"></script>
+    <script src="https://kit.fontawesome.com/04dbcf7e87.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-database.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCtEQ0WQMgr4AHTjc0AsV8SqHQMcuh63BM",
+            authDomain: "informasjonsteknologi-1-15c1e.firebaseapp.com",
+            databaseURL: "https://informasjonsteknologi-1-15c1e.firebaseio.com",
+            projectId: "informasjonsteknologi-1-15c1e",
+            storageBucket: "informasjonsteknologi-1-15c1e.appspot.com",
+            messagingSenderId: "183718111388",
+            appId: "1:183718111388:web:22ed9bacef400d44aaa559",
+            measurementId: "G-XSDFS2SFVJ"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+</head>
+
+<body id="studentBody">
+    <header>
+            <div class="teaminfo studentDropDown" id="studentsBox">
+                <h3>
+                    Velg lag
+                </h3>
+                <select id="chooseTeam">
+
+                </select>
+            </div>
+    </header>
+    <main id="studentMain">
+
+    </main>
+    <script>
+
+        db = firebase.firestore();
+
+        let main = document.querySelector("main");
+
+        async function getStudents() {
+            console.log("Retrieving data for students from the database");
+
+            let selectedTeam = document.getElementById("chooseTeam");
+
+            let selectedTeamText = selectedTeam.options[selectedTeam.selectedIndex].text;
+
+            let teamStudents = await db.collection("elever").where("lag", "==", selectedTeamText).get();
+
+            documentsToHTML(teamStudents);
+
+        }
+
+        async function documentsToHTML(teamStudents) {
+            // Sletter HTML som var i main
+            main.innerHTML = "";
+
+            // Går igjennom alle documentene med en for-løkke
+            for (let doc of teamStudents.docs) {
+                console.log(doc.id, "=>", doc.data());
+
+                // Henter ut dataene fra et document
+                let data = doc.data();
+
+                let studentID = doc.id;
+
+                let surName = data.fornavn;
+
+                let familyName = data.etternavn;
+
+                // Skriver dataene til HTML
+                main.innerHTML += `
+                <div class="studentContainer">
+                    <article class="studentArticle">
+                        <p class="studentName">
+                            ${surName} ${familyName}
+                        </p>
+                        <p class="studentRemove">
+                            <i class="fas fa-trash-alt deleteStudent" id="${studentID}" onclick="deleteStudent('${studentID}');"></i>
+                            <i class="fas fa-sync" id="${studentID}2"></i>
+                        </p>
+                    </article>
+                </div>`;
+            }
+        };
+
+        async function deleteStudent(studentID) {
+            document.getElementById(studentID + "2").style.display = "block";
+            document.getElementById(studentID).style.display = "none";
+            await db.collection("elever").doc(studentID).delete().then(function () {
+                console.log("Student was successfully deleted!");
+                console.log(studentID);
+                getStudents();
+                document.getElementById(studentID).style.display = "none";
+            });
+        };
+
+        async function getTeams() {
+            let userID = Cookies.get("uid");
+
+            let teamDocuments = await db.collection("lag").where("bruker", "==", userID).get();
+
+            let selTeam = document.querySelector("#chooseTeam");
+
+            selTeam.innerHTML = `
+            `;
+
+            for (let doc of teamDocuments.docs) {
+                console.log(doc.id);
+                let data = doc.data();
+
+                selTeam.innerHTML += `
+                    <option value="${doc.id}" onclick="getStudents();">${data.lagnavn}</option>`;
+            }
+        }
+
+
+        getTeams();
+
+    </script>
+</body>
+
+</html>

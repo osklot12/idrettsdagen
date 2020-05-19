@@ -126,8 +126,11 @@
                     </h3>
                     <input type="text" id="familyName" maxlength="20">
                 </div>
-                <i class="fas fa-tasks" id="manageStudents" onclick="manageStudents()"></i>
-                <i class="far fa-paper-plane filloutBtn" onclick="writeStudent();"></i>
+                <div class="manageBar">
+                    <i class="fas fa-tasks" id="manageStudents" onclick="manageStudents()"></i>
+                    <div class="dummy" id="grower"></div>
+                    <i class="far fa-paper-plane filloutBtn" onclick="writeStudent();"></i>
+                </div>
             </div>
         </div>
         <div id="teamcreated">
@@ -332,7 +335,7 @@
 
             let students = await db.collection("elever").where("lag", "==", teamName).get();
 
-            let studentDiv = document.getElementById(teamName+"Students");
+            let studentDiv = document.getElementById(teamName + "Students");
 
             studentDiv.innerHTML = "";
 

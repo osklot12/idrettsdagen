@@ -113,6 +113,12 @@ nav > h1 {
 
 }
 
+@media (max-width: 550px) {
+    .fillouts {
+        padding: 0;
+    }
+}
+
 .welcome-text {
     text-align: center;
     margin: auto;
@@ -150,7 +156,6 @@ nav > h1 {
 .fillouts {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    padding: 60px;
 }
 
 .fillout {
@@ -309,7 +314,6 @@ nav > h1 {
 }
 
 .filloutBtn {
-    margin-left: 170px;
     margin-top: 30px;
     font-size: 40px;
     transition: 0.2s;
@@ -504,11 +508,9 @@ nav > h1 {
 }
 
 #manageStudents {
-    margin-right: 170px;
     margin-top: 30px;
     font-size: 40px;
     transition: 0.2s;
-    display: inline-block;
 }
 
 #studentsBox {
@@ -920,4 +922,37 @@ nav > h1 {
     cursor: pointer;
     animation-name: turnbutton;
     animation-duration: 0.5s;
+}
+
+.manageBar {
+    display: flex;
+    flex-direction: row;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+#grower {
+    display: flex;
+    flex-grow: 1;
+}
+
+@media (max-width: 1000px) {
+    #teamsDisplay {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
+
+@media (max-width: 850px) {
+    .teamInformation {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 750px) {
+    .teamInformation {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
 }

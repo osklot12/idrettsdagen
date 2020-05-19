@@ -955,4 +955,8 @@ nav > h1 {
         display: grid;
         grid-template-columns: repeat(1, 1fr);
     }
+
+    .displayTheStudents {
+        grid-template-columns: repeat(1, 1fr);
+    }
 }

@@ -7,8 +7,11 @@ body {
     margin: 0;
     background: url(resources/websitebackground.jpg);
     background-repeat: no-repeat;
-    background-size: 120%;
     background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 main {
@@ -100,6 +103,7 @@ nav > h1 {
     }
 }
 
+/*
 @media (max-width: 1120px) {
     
     body {
@@ -112,6 +116,7 @@ nav > h1 {
     }
 
 }
+*/
 
 @media (max-width: 550px) {
     .fillouts {

@@ -143,7 +143,7 @@
             let creator = Cookies.get("uid");
 
             await db.collection('skoler').doc().set({
-                navn: sportName,
+                navn: schoolName,
                 timestamp: firebase.firestore.Timestamp.fromDate(new Date()),
                 bruker: creator
             });

@@ -986,3 +986,19 @@ nav > h1 {
         width: 300px;
     }
 }
+
+#adminMain {
+    background-color: #1f28339c;
+    margin-right: 80px;
+    margin-left: 80px;
+    border-radius: 20px;
+}
+
+#adminMain > h1 {
+    text-transform: uppercase;
+    font-size: 40px;
+    padding: 30px;
+    color: #e64398;
+    font-weight: bold;
+    background-color: #f0ebf4;
+}

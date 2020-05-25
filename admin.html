@@ -135,7 +135,7 @@
             });
 
             await db.collection('logg').doc().set({
-                melding: creatorName + "opprettet" + sportName, 
+                melding: creatorName + " opprettet " + sportName, 
                 timestamp: firebase.firestore.Timestamp.fromDate(new Date())
             });
 
@@ -161,7 +161,7 @@
             });
 
             await db.collection('logg').doc().set({
-                melding: creatorName + "opprettet" + schoolName, 
+                melding: creatorName + " opprettet " + schoolName, 
                 timestamp: firebase.firestore.Timestamp.fromDate(new Date())
             });
 

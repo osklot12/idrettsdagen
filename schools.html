@@ -45,21 +45,12 @@
         <i class="fas fa-times" onclick="exit();"></i>
         <div class="showText">
             <h1 id="teamDisplay">
-                Administrer elever
+                Administrer skoler
             </h1>
-        </div>
-        <div class="studentDropDown">
-            <h3>
-                Velg lag
-            </h3>
-            <select id="chooseTeam" onchange="getStudents();">
-
-            </select>
-            <i class="fas fa-trash-alt deleteTeam" onclick="deleteTeam();"></i>
         </div>
         <div id="teamcreated">
             <p>
-                Laget ble slettet!
+                Idretten ble slettet!
             </p>
         </div>
     </header>
@@ -72,113 +63,62 @@
 
         let main = document.querySelector("main");
 
-        async function getStudents() {
-            console.log("Retrieving data for students from the database");
+        async function getSchools() {
+            console.log("Retrieving data for schools from the database")
 
-            let selectedTeam = document.getElementById("chooseTeam");
+            let schools = await db.collection("skoler").get();
 
-            let selectedTeamText = selectedTeam.options[selectedTeam.selectedIndex].text;
-
-            let teamStudents = await db.collection("elever").where("lag", "==", selectedTeamText).get();
-
-            documentsToHTML(teamStudents);
+            documentsToHTML(schools);
 
         }
 
-        async function documentsToHTML(teamStudents) {
+        async function documentsToHTML(schools) {
             // Sletter HTML som var i main
             main.innerHTML = "";
 
             // Går igjennom alle documentene med en for-løkke
-            for (let doc of teamStudents.docs) {
+            for (let doc of schools.docs) {
                 console.log(doc.id, "=>", doc.data());
 
                 // Henter ut dataene fra et document
                 let data = doc.data();
 
-                let studentID = doc.id;
+                let schoolID = doc.id;
 
-                let surName = data.fornavn;
-
-                let familyName = data.etternavn;
+                let schoolName = data.navn;
 
                 // Skriver dataene til HTML
                 main.innerHTML += `
                 <div class="studentContainer">
                     <article class="studentArticle">
                         <p class="studentName">
-                            ${surName} ${familyName}
+                            ${schoolName}
                         </p>
                         <p class="studentRemove">
-                            <i class="fas fa-trash-alt deleteStudent" id="${studentID}" onclick="deleteStudent('${studentID}');"></i>
-                            <i class="fas fa-sync" id="${studentID}2"></i>
+                            <i class="fas fa-trash-alt deleteStudent" id="${schoolID}" onclick="deleteStudent('${schoolID}');"></i>
+                            <i class="fas fa-sync" id="${schoolID}2"></i>
                         </p>
                     </article>
                 </div>`;
             }
         };
 
-        async function deleteStudent(studentID) {
-            document.getElementById(studentID + "2").style.display = "block";
-            document.getElementById(studentID).style.display = "none";
-            await db.collection("elever").doc(studentID).delete().then(function () {
-                console.log("Student was successfully deleted!");
-                console.log(studentID);
-                getStudents();
-                document.getElementById(studentID).style.display = "none";
+        async function deleteStudent(schoolID) {
+            document.getElementById(schoolID + "2").style.display = "block";
+            document.getElementById(schoolID).style.display = "none";
+            await db.collection("idretter").doc(schoolID).delete().then(function () {
+                console.log("School was successfully deleted!");
+                console.log(schoolID);
+                getSchools();
+                document.getElementById(schoolID).style.display = "none";
             });
         };
-
-        async function getTeams() {
-            let userID = Cookies.get("uid");
-
-            let teamDocuments = await db.collection("lag").where("bruker", "==", userID).get();
-
-            let selTeam = document.querySelector("#chooseTeam");
-
-            selTeam.innerHTML = `
-            `;
-
-            for (let doc of teamDocuments.docs) {
-                console.log(doc.id);
-                let data = await doc.data();
-
-                selTeam.innerHTML += `
-                    <option value="${doc.id}">${data.lagnavn}</option>`;
-            }
-            getStudents();
-        }
 
         function exit() {
-            window.location.replace("main.html");
+            window.location.replace("admin.html");
         };
 
-        async function deleteTeam() {
-
-            let selectedTeam = document.getElementById("chooseTeam");
-
-            let selectedTeamText = selectedTeam.options[selectedTeam.selectedIndex].text;
-
-            let targetTeam = await db.collection("lag").where("lagnavn", "==", selectedTeamText).get();
-
-            let data = targetTeam.docs[0].data();
-
-            let targetedTeam = targetTeam.docs[0].id;
-
-
-
-            console.log(targetedTeam);
-
-            await db.collection("lag").doc(targetedTeam).delete().then(function () {
-                console.log("Team was successfully deleted!");
-                document.getElementById("teamcreated").style.display = "block";
-                setTimeout(() => { document.getElementById("teamcreated").style.display = "none"; }, 4000);
-                getTeams();
-            });
-        }
-
-
-        getTeams();
+        getSchools();
 
     </script>
 </body>

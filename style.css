@@ -671,7 +671,6 @@ nav > h1 {
     text-align: center;
     color: #f0ebf4;
     margin-bottom: 70px;
-    animation: colorchange3 3s ease infinite;
     padding: 10px;
     border-radius: 20px;
     vertical-align: middle;
@@ -686,13 +685,11 @@ nav > h1 {
     text-align: center;
 }
 
-@media (max-width: 500px) {
-    .studentDropDown {
-        flex-direction: column;
-    }
-
-    .studentDropDown > input {
-        margin-bottom: 20px
+@media (max-width: 870px) {
+    #teamDisplay {
+        font-size: 50px;
+        margin-left: 10px;
+        margin-right: 10px;
     }
 }
 
@@ -975,5 +972,17 @@ nav > h1 {
     .welcome-text > p {
         padding-left: 40px;
         padding-right: 40px;
+    }
+}
+
+.fillout2 {
+    min-height: 0px;
+    padding-bottom: 30px;
+
+}
+
+@media (max-width: 640px){
+    .studentDropDown {
+        width: 300px;
     }
 }

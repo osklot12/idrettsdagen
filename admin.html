@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Idrettsdagen</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <script src="https://use.fontawesome.com/70ccd8c446.js"></script>
+    <script src="https://kit.fontawesome.com/04dbcf7e87.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-database.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCtEQ0WQMgr4AHTjc0AsV8SqHQMcuh63BM",
+            authDomain: "informasjonsteknologi-1-15c1e.firebaseapp.com",
+            databaseURL: "https://informasjonsteknologi-1-15c1e.firebaseio.com",
+            projectId: "informasjonsteknologi-1-15c1e",
+            storageBucket: "informasjonsteknologi-1-15c1e.appspot.com",
+            messagingSenderId: "183718111388",
+            appId: "1:183718111388:web:22ed9bacef400d44aaa559",
+            measurementId: "G-XSDFS2SFVJ"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <h1>
+                Idrettsdagen
+            </h1>
+            <div class="dummy"></div>
+            <div class="links">
+                <a href="#" class="page-button">
+                    <i class="fas fa-home"></i>
+                </a>
+                <a href="#" class="page-button">
+                    <i class="fas fa-user-shield"></i>
+                </a>
+                <a href="#" class="page-button">
+                    <i class="fas fa-info-circle"></i>
+                </a>
+                <a href="#" class="page-button" onclick="signOut();">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="fillouts">
+            <div class="fillout fillout2" id="adminSports">
+                <h1>
+                    Administrer idretter
+                </h1>
+                <div class="teaminfo">
+                    <h3>
+                        Legg til idrett
+                    </h3>
+                    <input type="text" id="teamname" maxlength="20">
+                </div>
+
+                <div class="manageBar">
+                    <i class="fas fa-tasks" id="manageStudents" onclick="manageSports()"></i>
+                    <div class="dummy" id="grower"></div>
+                    <i class="far fa-paper-plane filloutBtn" onclick="writeSport();"></i>
+                </div>
+            </div>
+            <div class="fillout fillout2" id="adminSchools">
+                <h1>
+                    Administrer skoler
+                </h1>
+                <div class="teaminfo">
+                    <h3>
+                        Legg til skole
+                    </h3>
+                    <input type="text" id="schoolName" maxlength="20">
+                </div>
+
+                <div class="manageBar">
+                    <i class="fas fa-tasks" id="manageStudents" onclick="manageSchools()"></i>
+                    <div class="dummy" id="grower"></div>
+                    <i class="far fa-paper-plane filloutBtn" onclick="writeSchool();"></i>
+                </div>
+            </div>
+        </div>
+        <div id="teamcreated">
+            <p>
+                Idretten din ble registrert!
+            </p>
+        </div>
+        <div id="studentcreated">
+            <p>
+                Skolen ble lagt til!
+            </p>
+        </div>
+    </main>
+    <script>
+
+        let db = firebase.firestore();
+
+        async function writeSport() {
+
+            let sportName = document.getElementById("teamname").value;
+
+            console.log("Writing sport");
+
+            let creator = Cookies.get("uid");
+
+            await db.collection('lag').doc().set({
+                navn: sportName,
+                timestamp: firebase.firestore.Timestamp.fromDate(new Date()),
+                bruker: creator
+            });
+
+            document.getElementById("teamcreated").style.display = "block";
+            setTimeout(() => { document.getElementById("teamcreated").style.display = "none"; }, 4000);
+            getTeams();
+
+        }
+
+        async function writeSchool() {
+
+            let schoolName = document.getElementById("schoolName").value;
+
+            console.log("Writing school");
+
+            let creator = Cookies.get("uid");
+
+            await db.collection('skoler').doc().set({
+                navn: sportName,
+                timestamp: firebase.firestore.Timestamp.fromDate(new Date()),
+                bruker: creator
+            });
+
+            document.getElementById("teamcreated").style.display = "block";
+            setTimeout(() => { document.getElementById("studentcreated").style.display = "none"; }, 4000);
+            getTeams();
+
+        }
+
+        function manageSports() {
+            window.location.replace("sports.html");
+        };
+
+        function manageSchools() {
+            window.location.replace("schools.html");
+        };
+
+        function signOut() {
+            Cookies.remove("uid");
+            Cookies.remove("signedIn");
+            window.location.replace("index.html");
+        }
+
+    </script>
+</body>
+
+</html>

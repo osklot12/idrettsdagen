@@ -103,6 +103,9 @@
                 </div>
             </div>
         </div>
+        <div id="logg">
+
+        </div>
         <div id="teamcreated">
             <p>
                 Idretten din ble registrert!
@@ -117,6 +120,10 @@
     <script>
 
         let db = firebase.firestore();
+
+        
+
+        let loggDiv = document.querySelector("#logg");
 
         async function writeSport() {
 
@@ -177,6 +184,24 @@
         function manageSchools() {
             window.location.replace("schools.html");
         };
+
+        let logg = db.collection("logg").orderBy("timestamp", "desc");
+
+        logg.onSnapshot(function (snapshot) {
+            // Går igjennom alle documentene i snapshoten
+            for (let endring of snapshot.docChanges()) {
+                if (endring.type === "added") {
+                    console.log(endring.doc.id, "=>", endring.doc.data());
+                    // Henter ut dataene til et document
+                    let data = endring.doc.data();
+                    let postTime = data.timestamp.toDate();
+                    // Skriver dataene til HTML
+                    loggDiv.innerHTML += `
+                    <div class="loggMelding">${data.melding}</div>
+                    `;
+                }
+            }
+        });
 
         function signOut() {
             Cookies.remove("uid");

@@ -993,6 +993,7 @@ nav > h1 {
     margin-left: 80px;
     border-radius: 20px;
     margin-top: 60px;
+    margin-bottom: 80px;
 }
 
 #adminMain > h1 {
@@ -1002,4 +1003,15 @@ nav > h1 {
     color: #e64398;
     font-weight: bold;
     background-color: #f0ebf4;
+}
+
+.loggMelding {
+    padding: 5px;
+    color: #f0ebf4;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+#logg {
+    padding: 30px;
 }

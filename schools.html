@@ -95,7 +95,7 @@
                             ${schoolName}
                         </p>
                         <p class="studentRemove">
-                            <i class="fas fa-trash-alt deleteStudent" id="${schoolID}" onclick="deleteStudent('${schoolID}');"></i>
+                            <i class="fas fa-trash-alt deleteStudent" id="${schoolID}" onclick="deleteStudent('${schoolID}','${schoolName}');"></i>
                             <i class="fas fa-sync" id="${schoolID}2"></i>
                         </p>
                     </article>
@@ -103,14 +103,20 @@
             }
         };
 
-        async function deleteStudent(schoolID) {
+        async function deleteStudent(schoolID, schoolName) {
             document.getElementById(schoolID + "2").style.display = "block";
             document.getElementById(schoolID).style.display = "none";
+            let creatorName = Cookies.get("name");
             await db.collection("idretter").doc(schoolID).delete().then(function () {
                 console.log("School was successfully deleted!");
                 console.log(schoolID);
                 getSchools();
                 document.getElementById(schoolID).style.display = "none";
+            });
+
+            await db.collection('logg').doc().set({
+                melding: creatorName + "slettet" + schoolName, 
+                timestamp: firebase.firestore.Timestamp.fromDate(new Date())
             });
         };
 

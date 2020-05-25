@@ -73,6 +73,7 @@
 
                 Cookies.set("signedIn", "true", { expires: 7 });
                 Cookies.set("uid", user.uid, { expires: 7 });
+                Cookies.set("name", user.displayName, { expires: 7 });
 
                 await db.collection('brukere').doc(user.uid).set({
                     navn: user.displayName,

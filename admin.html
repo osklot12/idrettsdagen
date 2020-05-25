@@ -126,10 +126,17 @@
 
             let creator = Cookies.get("uid");
 
+            let creatorName = Cookies.get("name");
+
             await db.collection('idretter').doc().set({
                 navn: sportName,
                 timestamp: firebase.firestore.Timestamp.fromDate(new Date()),
                 bruker: creator
+            });
+
+            await db.collection('logg').doc().set({
+                melding: creatorName + "opprettet" + sportName, 
+                timestamp: firebase.firestore.Timestamp.fromDate(new Date())
             });
 
             document.getElementById("teamcreated").style.display = "block";
@@ -145,10 +152,17 @@
 
             let creator = Cookies.get("uid");
 
+            let creatorName = Cookies.get("name");
+
             await db.collection('skoler').doc().set({
                 navn: schoolName,
                 timestamp: firebase.firestore.Timestamp.fromDate(new Date()),
                 bruker: creator
+            });
+
+            await db.collection('logg').doc().set({
+                melding: creatorName + "opprettet" + schoolName, 
+                timestamp: firebase.firestore.Timestamp.fromDate(new Date())
             });
 
             document.getElementById("studentcreated").style.display = "block";
